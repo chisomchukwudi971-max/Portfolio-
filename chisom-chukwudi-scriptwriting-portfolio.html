@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chisom Chukwudi — YouTube Scriptwriter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16262B;
+    --paper:#F6F2E8;
+    --paper-alt:#EFE8D6;
+    --text-on-paper:#1E2A2E;
+    --text-on-ink:#F3EFE3;
+    --muted:#6B7B76;
+    --muted-on-ink:#9FB0AC;
+    --amber:#B9791F;
+    --amber-highlight:rgba(185,121,31,0.20);
+    --rule:rgba(22,38,43,0.13);
+    --rule-on-ink:rgba(243,239,227,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text-on-paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--text-on-ink);
+    padding:72px 0 64px;
+  }
+  .hero-id{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-bottom:34px;
+  }
+  .hero-id .name{
+    font-size:0.95rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .hero-id .role{
+    font-size:0.9rem;
+    color:var(--muted-on-ink);
+  }
+  .headline{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2rem, 6vw, 3.1rem);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    max-width:14ch;
+  }
+  .subhead{
+    font-size:clamp(1rem, 2vw, 1.15rem);
+    line-height:1.6;
+    color:var(--text-on-ink);
+    opacity:0.88;
+    max-width:40ch;
+    margin:0 0 36px;
+  }
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .btn{
+    display:inline-block;
+    text-decoration:none;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    padding:13px 22px;
+    border-radius:3px;
+    transition:opacity .15s ease, background-color .15s ease;
+  }
+  .btn-primary{
+    background:var(--amber);
+    color:#1B1304;
+  }
+  .btn-primary:hover{ opacity:0.88; }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text-on-ink);
+    border:1px solid var(--rule-on-ink);
+  }
+  .btn-ghost:hover{ border-color: rgba(243,239,227,0.4); }
+
+  /* ---------- About ---------- */
+  .about{
+    padding:56px 0 48px;
+  }
+  .bio{
+    font-size:1.1rem;
+    line-height:1.7;
+    max-width:58ch;
+    margin:0 0 28px;
+  }
+  .facts{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:0;
+    padding:0;
+  }
+  .facts li{
+    font-size:0.85rem;
+    font-weight:500;
+    padding:7px 14px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    color:var(--text-on-paper);
+  }
+
+  /* ---------- Scripts section ---------- */
+  .scripts-section{
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 34px,
+        rgba(22,38,43,0.035) 34px,
+        rgba(22,38,43,0.035) 35px
+      ),
+      var(--paper-alt);
+    padding:60px 0 70px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(1.6rem, 4vw, 2.1rem);
+    margin:0 0 8px;
+  }
+  .section-sub{
+    color:var(--muted);
+    font-size:0.95rem;
+    margin:0 0 40px;
+  }
+
+  .script-card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:28px 26px 26px;
+    margin-bottom:22px;
+  }
+  .script-card:last-child{ margin-bottom:0; }
+
+  .script-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(1.2rem, 3vw, 1.45rem);
+    margin:0 0 10px;
+    line-height:1.25;
+  }
+  .script-note{
+    color:var(--muted);
+    font-size:0.92rem;
+    line-height:1.55;
+    margin:0 0 20px;
+    max-width:52ch;
+  }
+
+  .pull-quote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.02rem, 2.4vw, 1.2rem);
+    line-height:1.55;
+    margin:0 0 22px;
+    padding-left:18px;
+    border-left:2px solid var(--amber);
+    color:var(--text-on-paper);
+  }
+  mark{
+    background:var(--amber-highlight);
+    color:inherit;
+    padding:0.05em 0.2em;
+    border-radius:3px;
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+  }
+
+  details.full-script{
+    border-top:1px solid var(--rule);
+    padding-top:16px;
+  }
+  details.full-script summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  details.full-script summary::-webkit-details-marker{ display:none; }
+  .chev{
+    display:inline-block;
+    font-size:0.8rem;
+    transform:translateY(-1px);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .chev{ transition:transform .2s ease; }
+  }
+  details[open] .chev{ transform:rotate(180deg) translateY(1px); }
+  .label-open{ display:none; }
+  details[open] .label-open{ display:inline; }
+  details[open] .label-closed{ display:none; }
+
+  .script-body{
+    margin-top:20px;
+    padding-top:4px;
+  }
+  .beat + .beat{ margin-top:26px; }
+  .beat-label{
+    font-size:0.78rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--amber);
+    margin:0 0 10px;
+  }
+  .script-body h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:1.05rem;
+    margin:0 0 8px;
+    color:var(--text-on-paper);
+  }
+  .script-body p{
+    margin:0 0 14px;
+    font-size:0.98rem;
+    line-height:1.7;
+  }
+  .direction{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    margin:0 0 14px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    background:var(--ink);
+    color:var(--text-on-ink);
+    padding:64px 0 72px;
+    text-align:left;
+  }
+  .contact h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(1.5rem, 4vw, 2rem);
+    max-width:18ch;
+    margin:0 0 26px;
+    line-height:1.2;
+  }
+  .contact .btn-primary{
+    font-size:1.02rem;
+  }
+
+  @media (max-width:480px){
+    .hero{ padding:56px 0 48px; }
+    .about, .scripts-section, .contact{ padding-top:44px; padding-bottom:44px; }
+    .script-card{ padding:22px 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-id">
+      <span class="name">Chisom Chukwudi</span>
+      <span class="role">YouTube Scriptwriter</span>
+    </div>
+    <h1 class="headline">The first few seconds decide everything.</h1>
+    <p class="subhead">I write YouTube scripts for business, finance, and psychology channels, built to win that decision and hold it for the next ten minutes.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:chisomchukwudi971@gmail.com">Get in touch</a>
+      <a class="btn btn-ghost" href="#scripts">See the scripts</a>
+    </div>
+  </div>
+</header>
+
+<section class="about">
+  <div class="wrap">
+    <p class="bio">I write YouTube scripts for entrepreneurship, business, and psychology channels. Every video opens on a real stake, builds toward a specific answer, and closes on something the viewer can act on today. Every claim comes from a named study or a real example.</p>
+    <ul class="facts">
+      <li>Entrepreneurship &amp; business</li>
+      <li>Behavioral psychology</li>
+      <li>8–12 minute long-form scripts</li>
+    </ul>
+  </div>
+</section>
+
+<section id="scripts" class="scripts-section">
+  <div class="wrap">
+    <h2 class="section-title">Selected scripts</h2>
+    <p class="section-sub">Full scripts below, hook to outro.</p>
+
+    <!-- SCRIPT 1: Psychology Tricks -->
+    <article class="script-card">
+      <h3 class="script-title">The Psychology Tricks That Make People Say Yes</h3>
+      <p class="script-note">Five persuasion tactics, each tied to a named researcher (Voss, Cialdini, Kahneman and Tversky), not a vague "studies show."</p>
+      <blockquote class="pull-quote">
+        You already know the classics: be likable, show proof other people bought in, create urgency. <mark>None of the five here make that list.</mark>
+      </blockquote>
+      <details class="full-script">
+        <summary><span class="label-closed">Read the full script</span><span class="label-open">Show less</span><span class="chev" aria-hidden="true">⌄</span></summary>
+        <div class="script-body">
+
+          <div class="beat">
+            <p class="beat-label">Hook / Intro</p>
+            <p>This video breaks down five psychology tricks that get someone to say yes. You already know the classics: be likable, show proof other people bought in, create urgency. None of the five here make that list. A couple of them work by doing the opposite of what you'd expect, like handing someone an easy way to say no. Every one comes from real studies or real negotiation training, not a guess. In this video: how giving someone an exit gets you more yeses, why a smaller ask raises your total, the one line that drops someone's guard, framing your ask as a loss instead of a gain, and the number trick that makes any price feel more trustworthy.</p>
+          </div>
+
+          <div class="beat">
+            <h4>The "that's right" moment</h4>
+            <p>The first trick doesn't come from a psychology lab. It comes from a former FBI hostage negotiator named Chris Voss, and it works before you've said a word about your offer.</p>
+            <p>The move is simple: repeat back exactly what someone is feeling, not what they said. Say a customer tells you, "I've been burned by consultants before." You don't defend yourself. You say something like, "It sounds like the last person who promised you results let you down." Get it right, and they won't say "you're right." They'll say "that's right" — and the moment they do, their guard drops.</p>
+            <p>That's your cue. Once someone hears their own feeling reflected back accurately, defending themselves stops feeling necessary. So before you pitch anything, name the fear or frustration you think they're carrying, in their words, and wait for that exact phrase.</p>
+            <p>This is the first piece of the puzzle: before anyone says yes, they have to stop guarding the door. But an open door isn't the same as a green light. What do you do once they're listening, and you can feel them hesitate the second you ask for something?</p>
+          </div>
+
+          <div class="beat">
+            <h4>Give them the exit first</h4>
+            <p>You give them a way out before they ask for one.</p>
+            <p>French researchers Nicolas Guéguen and Alexandre Pascual tested something small: adding one line to the end of a request, "But you are free to accept or refuse." Same ask, same wording, just that sentence tacked on. Across dozens of follow-up studies, adding it roughly doubled how often people said yes.</p>
+            <p>That's the opposite of what most pitches do. Most people spend the whole pitch trying to remove the option to say no. This does the reverse. Say it plainly: "You don't have to say yes to this." Then stop talking.</p>
+            <p>Removing the exit sign didn't get anyone more yeses. Building one in did. Which raises a bigger question: what do you do when the exit's wide open, and the ask itself is still too big to say yes to?</p>
+          </div>
+
+          <div class="beat">
+            <h4>Shrink the ask, not the result</h4>
+            <p>You make the ask smaller.</p>
+            <p>Psychologists Robert Cialdini and David Schroeder tested this door to door, asking for charity donations. They added five words: "Even a penny will help." Nobody thinks a penny actually helps. But naming an amount that small made it harder to say no without feeling cheap. The number of people who gave went up. The average donation didn't drop, because most people gave more than a penny anyway.</p>
+            <p>So if you're pitching something big, don't lead with the whole thing. Lead with the smallest version of a yes: "Even fifteen minutes on a call would help me know if this is a fit." You're not lowering the value. You're lowering the bar to enter.</p>
+            <p>A small ask gets you in the door. But the door doesn't matter if the number attached to your offer looks like a guess. What actually makes a price feel trustworthy?</p>
+          </div>
+
+          <div class="beat">
+            <h4>Odd numbers over round ones</h4>
+            <p>You make the number specific.</p>
+            <p>Chris Janiszewski studies how people react to prices. In his research, a precise starting number, something like $4,998 instead of $5,000, got trusted more and argued with less than a round one. A round number reads like a guess. A specific one reads like someone did the math.</p>
+            <p>So instead of quoting a client $1,000 for a project, quote $973, based on your actual hours and costs, and say so. Instead of asking for a 20 percent discount, ask for 17 percent.</p>
+            <p>A precise number gets you taken seriously in the moment. But moments pass, and most people who feel like saying yes today will still be undecided tomorrow. What actually makes someone decide right now instead of putting it off?</p>
+          </div>
+
+          <div class="beat">
+            <h4>Frame the ask as a loss, not a gain</h4>
+            <p>You tell them what they lose by waiting, not just what they gain by acting.</p>
+            <p>Daniel Kahneman and Amos Tversky gave people the exact same choice, described two different ways. Framed as a gain, most people played it safe. Framed as the identical outcome in terms of what they'd lose, the same people took the risk instead. The odds never changed. Only the wording did.</p>
+            <p>So don't tell a client what they'll gain by hiring you this month. Tell them what they're already losing every month they don't: the customers going to a competitor, the hours spent on a problem you could already have solved. Loss moves people faster than gain ever does.</p>
+            <p>Every one of these five tricks works the same way: it lowers whatever was stopping someone from saying yes in the first place — their guard, their resistance to the ask, their doubt in the number, their reason to wait. Take away enough of that, and yes is just what's left.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Outro</p>
+            <p>Five tricks, and every one of them worked by removing pressure: giving someone an exit, shrinking the ask, naming what they're really feeling, framing the cost of waiting, and making your numbers look calculated instead of guessed.</p>
+            <p>If you've pitched something good and still heard more no's than you expected, the resistance sitting in front of the offer was probably the real reason. Now you know how to clear it.</p>
+            <p>Try one of these the next time you pitch something. Tell me in the comments which one you used and what happened. If this changes how that conversation goes, share it with the one person you know who needs it, and follow along for more like it.</p>
+          </div>
+
+        </div>
+      </details>
+    </article>
+
+    <!-- SCRIPT 2: Sunk Cost Trap -->
+    <article class="script-card">
+      <h3 class="script-title">The Sunk Cost Trap: When to Quit a Failing Business</h3>
+      <p class="script-note">Opens on one shop owner's story and returns to him for the resolution, instead of stating the lesson upfront.</p>
+      <blockquote class="pull-quote">
+        Picture a shop owner. Three years in, the shop still loses money every month. But every time someone asks if it's time to stop, he says the same thing. <mark>"I've come too far to quit."</mark>
+      </blockquote>
+      <details class="full-script">
+        <summary><span class="label-closed">Read the full script</span><span class="label-open">Show less</span><span class="chev" aria-hidden="true">⌄</span></summary>
+        <div class="script-body">
+
+          <div class="beat">
+            <p class="beat-label">Hook</p>
+            <p class="direction">[Visual: a shop owner alone in an empty shop, locking the door at night]</p>
+            <p>Picture a shop owner. Three years in, the shop still loses money every month. But every time someone asks if it's time to stop, he says the same thing. "I've come too far to quit."</p>
+            <p>That sentence sounds strong. But it can quietly cost more than the failure itself. So why do smart people say it? And why does it feel so true when they do? By the end of this video, you'll see that they aren't protecting their future. They're protecting their past.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Tension build</p>
+            <p class="direction">[Text on screen: "Money spent: gone. Time spent: gone."]</p>
+            <p>Here's what you lose when you don't understand this. It's not only the money you already spent. That money is gone. It's also the next year, and the year after that. Every month you stay in a failing business is a month you can't spend on something that could work.</p>
+            <p class="direction">[Visual: calendar pages flipping]</p>
+            <p>You'd expect the person who has lost the most to be the first to quit. But the opposite is true. The more you put in, the harder it is to leave. So the people who would gain the most from stopping are often the last to stop.</p>
+            <p>And it doesn't only happen in big companies. It happens in small shops, online stores, and side businesses. It happens to people with no savings and people with plenty. So what is actually keeping them there?</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Point 1 — the obvious cause</p>
+            <p class="direction">[Visual: a motivational poster that says "Winners never quit"]</p>
+            <p>Ask most people why they won't quit, and they'll say it's persistence or "Winners never quit," even "It's darkest before the dawn." And sometimes that's right. But that's only half the story.</p>
+            <p>Here's why. Persistence only works when there's something worth persisting for. But this kind of staying isn't about what's ahead. It's about what's behind. So it looks like courage, but it works like a trap.</p>
+            <p>In a small business, it sounds like this. "I already paid for the shop." "I already bought the stock." "I already made the sign." But none of those sentences say anything about next month. They only talk about the past.</p>
+            <p class="direction">[Visual: the Concorde jet on a runway]</p>
+            <p>Here's a famous example. Britain and France built the Concorde, a supersonic passenger jet. But the costs kept growing, and many people warned it might never pay for itself. So did they stop? No. They kept funding it, partly because of how much they had already spent. Economists still use it as the classic example of this mistake.</p>
+            <p>So the plane didn't keep going because of what it would earn. It kept going because of what it had already cost. And that's not persistence. It's something else. So what is it, and why does the brain do it?</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Point 2 — the hidden cause</p>
+            <p class="direction">[Visual: a scale with "loss" heavy on one side and "gain" light on the other]</p>
+            <p>Here's what's really going on. Your brain hates losses. Research on loss aversion suggests a loss feels about twice as strong as a gain of the same size. So losing $1,000 hurts far more than winning $1,000 feels good.</p>
+            <p>It's the same fear of loss that stops most people from starting a business. But here, it keeps people from leaving one.</p>
+            <p class="direction">[Visual: a coin in a jar, then a hand reaching in]</p>
+            <p>Now watch how it works. As long as you keep going, the money you spent still feels like it might come back. So the loss stays a "maybe." But the moment you quit, it becomes real. So your brain avoids quitting, not because the business is good, but because quitting makes the loss official.</p>
+            <p class="direction">[Visual: a plate of half-eaten food]</p>
+            <p>You already do this in daily life. You order a big meal. You're full. But you paid for it, so you keep eating. The money is gone whether you finish the plate or not. So finishing only adds a stomachache.</p>
+            <p class="direction">[Visual: two theater tickets]</p>
+            <p>Researchers have tested this too. In one classic study, people who paid full price for theater season tickets went to more shows than people who got discounted tickets. Same shows. Same seats. But the people who paid more felt they had to get their money's worth. So the money changed how they felt, but it did not change how good the shows were.</p>
+            <p>And it isn't only money. It's the years, the late nights, and what your friends and family said when you started. So quitting doesn't only feel like a money loss. It feels like admitting you were wrong.</p>
+            <p class="direction">[Visual: a hole getting deeper, a shovel still digging]</p>
+            <p>Now here's the part that catches business owners. Every extra dollar you add makes the next dollar harder to give up. So the trap feeds itself. The deeper you go, the more it feels like leaving would waste everything. And this is where it gets worse.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Point 3 — the twist</p>
+            <p class="direction">[Back to the shop owner at the door]</p>
+            <p>The money you already spent is gone whether you quit today or a year from now. So it should get no vote in your decision at all. Only the future gets a vote.</p>
+            <p>And here's what makes this even more important. You can earn money again. But you can't earn back time. So when you stay in the wrong business, you're not only spending money. You're spending the one thing you can't get back.</p>
+            <p class="direction">[Text on screen: "What will the NEXT hour and the NEXT dollar earn?"]</p>
+            <p>So the real question isn't, "How much have I put in?" It's, "What will the next hour and the next dollar earn?" But that doesn't mean you should quit every time things get hard. That's the second half of the twist. Sunk cost isn't a reason to quit. It's a reason to stop letting the past decide.</p>
+            <p class="direction">[Visual: two lines on a chart, one slowly rising, one flat]</p>
+            <p>So how do you tell a slow start from a dead end? Look at the direction, not the total. Are customers coming back? Is each month a little better, or exactly the same? A slow business that's improving is not the same as a flat one that just keeps eating money.</p>
+            <p class="direction">[Visual: a blank page with a line at the top: "Would I start this today?"]</p>
+            <p>Here's a simple test. Imagine you had no history with this business. No money spent, no years, no story. Now ask, "Knowing what I know today, would I start this business again?" If the answer is yes, that's a real reason to stay. But if the answer is no, then the only thing keeping you there is the past.</p>
+            <p>And there's one more rule, because your brain will lie to you in the middle of the storm. <span class="direction" style="display:inline">[Visual: a sign that says "Quit rule"]</span> Make your quit rule before things get bad. Something like this: "If I'm not making this much by this month, I change the plan or I stop." Pick numbers you can measure, like sales per month, new customers per week, or money left in the bank. Not feelings. Then write it down. So when the fear shows up, you're not deciding with your feelings. You're following a rule you made with a clear head.</p>
+            <p class="direction">[Back to the shop owner]</p>
+            <p>Now go back to the shop owner. "I've come too far to quit" sounds strong. But the better question is, "How far do I still have to go, and what's waiting there?" And that's how the loop closes.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Payoff + action</p>
+            <p class="direction">[Visual: a person writing on a piece of paper]</p>
+            <p>Here's one thing you can do today. Take one piece of paper and write this question: "If I had no history with this business, would I start it today?" Then answer with one word. Yes or no. Don't explain.</p>
+            <p>Then write down three numbers. What the business costs you each month. What it earns each month. And what has changed in the last 90 days.</p>
+            <p>If your answer is yes but the numbers are bad, don't stay the same. Change something. And if your answer is no, then you have your answer. The next step is to plan a clean exit.</p>
+            <p>Then show your paper to someone you trust. Ask them the same question. They didn't spend the years or the money, so they don't feel the trap as strongly. That makes them clearer than you, at least on this one question.</p>
+            <p class="direction">[Text on screen: "The money you spent is gone either way. Only the future gets a vote."]</p>
+            <p>Quick recap: the money you already spent is gone either way, so only what comes next should decide whether you stay.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Outro</p>
+            <p class="direction">[Face to camera or simple end screen]</p>
+            <p>Have you ever stayed in something too long because you had already put so much in? Tell me what it was in the comments.</p>
+            <p>And if this made sense, watch "Why Most People Never Start a Business." It's the same fear of loss, just at the starting line.</p>
+          </div>
+
+        </div>
+      </details>
+    </article>
+
+    <!-- SCRIPT 3: Psychology of Pricing -->
+    <article class="script-card">
+      <h3 class="script-title">The Psychology of Pricing: Why $9.99 Beats $10</h3>
+      <p class="script-note">Takes a pricing fact most viewers think they already understand and gives it a specific mechanism: the left-digit effect.</p>
+      <blockquote class="pull-quote">
+        One cent. That's the gap between these two prices. But in real store tests, <mark>that one cent changes what people buy.</mark>
+      </blockquote>
+      <details class="full-script">
+        <summary><span class="label-closed">Read the full script</span><span class="label-open">Show less</span><span class="chev" aria-hidden="true">⌄</span></summary>
+        <div class="script-body">
+
+          <div class="beat">
+            <p class="beat-label">Hook</p>
+            <p class="direction">[Close-up: a $9.99 tag, then a $10.00 tag]</p>
+            <p>One cent. That's the gap between these two prices. But in real store tests, that one cent changes what people buy. So why would a price that's one cent lower feel like a completely different deal?</p>
+            <p>Here's the strange part. It has almost nothing to do with the cent. By the end of this video, you'll see why your brain isn't comparing these two prices at all.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Tension build</p>
+            <p class="direction">[Montage: price tags on shelves, restaurant menus, phone stores, websites]</p>
+            <p>Look at any store, any menu, any website. Prices ending in 99 are everywhere. But you've been reading them your whole life, so you don't notice them anymore. And that's exactly why they work.</p>
+            <p class="direction">[Text on screen: "A shortcut you never chose"]</p>
+            <p>Think about what that means. Every time your brain takes a shortcut with a price, a decision gets made for you before you notice. So you think you're choosing. But part of the choice already happened.</p>
+            <p>You'd expect one cent to be too small to matter. But the opposite is true. Sellers keep using it because it keeps working. So what is your brain actually doing when it reads a price?</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Point 1 — the obvious cause</p>
+            <p class="direction">[Visual: $9.99 shrinking next to $10]</p>
+            <p>Ask most people why stores use 99, and they give the same answer. It makes the price look lower. And that's true. It does. But that's only half the story.</p>
+            <p>Here's why. One cent is far too small to explain what happens. If people only saw "a cent cheaper," almost nobody would change their choice. But they do. So the cent can't be the whole reason.</p>
+            <p class="direction">[Visual: two identical dresses, one tagged $34, one tagged $39]</p>
+            <p>Here's a famous test. Researchers worked with a women's clothing catalog. They sold the same dress at different prices. One version cost $34. Another cost $39. So you'd expect the cheaper dress to win. But the $39 dress sold more.</p>
+            <p>A higher price sold more. So this can't be about "cheaper." And a five-dollar jump is not a one-cent trick. So what did buyers see that we're missing?</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Point 2 — the hidden cause</p>
+            <p class="direction">[Visual: a price tag with the first digit glowing]</p>
+            <p>Here's the answer. Your brain reads prices from left to right. But it doesn't wait for the last digit. So it grabs the first digit and files the price under it.</p>
+            <p>$9.99 gets filed under "nine dollars." $10 gets filed under "ten dollars."</p>
+            <p class="direction">[Visual: two boxes, one labeled "single digits," one labeled "double digits"]</p>
+            <p>So in your head, it's not a one-cent gap. It's a jump to a whole new level. This is called the left-digit effect. Your brain is saving effort. It reads the start of the number, and it guesses the rest.</p>
+            <p class="direction">[Visual: $199 next to $200]</p>
+            <p>Try it with a phone. A phone at $199 feels like a "one hundred something" phone. But a phone at $200 feels like a "two hundred" phone. The gap is still one dollar. But the feeling is not the same.</p>
+            <p>And it's not only about small snacks or cheap items. The bigger the change in that first digit, the stronger the pull. So a price like $299 gets filed under "two hundred." But $300 gets filed under "three hundred."</p>
+            <p class="direction">[Visual: a shopper glancing at a price and moving on]</p>
+            <p>Now think about how fast this happens. You don't stop and do the math. You glance, you file it, you move on. So the brain doesn't measure the price. It estimates it. And this is where it gets worse.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Point 3 — the twist</p>
+            <p class="direction">[Back to the opening $9.99 / $10 shot]</p>
+            <p>Knowing the trick doesn't switch it off. It happens fast, before you think it through. So even people who know about it still feel it.</p>
+            <p>So the cent was never the point. The first digit was. The seller isn't lowering your price by one cent. They're moving it into a cheaper category in your head.</p>
+            <p>But there's a second half to this twist. <span class="direction" style="display:inline">[Visual: a luxury watch with a clean round price]</span> Look at luxury brands. Their prices are often clean and round. Something like 500 or 1,000. So why don't they use 99?</p>
+            <p>Because round numbers feel smooth. They feel like a feeling, not a calculation. And research suggests round prices work better when people buy with emotion. But prices like 9.99 work better when people are comparing and calculating.</p>
+            <p>So the real answer isn't "9.99 is better." The real answer is that the ending of a price tells the buyer how to think. A 99 says "do the math, this is a deal." A round number says "don't calculate, just feel."</p>
+            <p class="direction">[Back to the two price tags]</p>
+            <p>So here's why $9.99 beats $10. Your brain isn't measuring one cent. It's reading the first digit, and it files one price under "nine" and the other under "ten." The loop closes right there.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Payoff + action</p>
+            <p class="direction">[Visual: a hand covering the cents on a price tag]</p>
+            <p>Here's one thing you can do today. Before you buy anything, round the price up. $9.99 is ten dollars. $199 is two hundred. Then ask yourself, "Would I still buy this?"</p>
+            <p>If the answer is yes, good. You made the choice. But if the answer is no, the trick made it for you.</p>
+            <p>And if you sell something, test both endings. Try a 99 price, and try a round price. Then let your customers show you which one works.</p>
+            <p class="direction">[Text on screen: "$9.99 wins because your brain sees a lower level, not a lower price."]</p>
+            <p>Quick recap: $9.99 beats $10 because your brain reads the first digit, and files the price in a cheaper category.</p>
+          </div>
+
+          <div class="beat">
+            <p class="beat-label">Outro</p>
+            <p class="direction">[Face to camera or simple end screen]</p>
+            <p>What's the last thing you bought at a 99 price? Tell me in the comments.</p>
+            <p>And if this surprised you, the next one explains why people really buy with emotion first and logic second.</p>
+          </div>
+
+        </div>
+      </details>
+    </article>
+
+  </div>
+</section>
+
+<footer class="contact">
+  <div class="wrap">
+    <h2>Have a channel that needs scripts like these?</h2>
+    <a class="btn btn-primary" href="mailto:chisomchukwudi971@gmail.com">chisomchukwudi971@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
